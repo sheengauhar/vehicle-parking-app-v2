@@ -8,5 +8,8 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     SECRET_KEY = 'your_secret_key_here'
-
     SECURITY_PASSWORD_SALT = 'your_password_salt_here'
+
+    SECURITY_TOKEN_AUTHENTICATION_HEADER = "Authentication-Token"
+    SECURITY_TOKEN_AUTHENTICATION_KEY = "auth_token"
+    SECURITY_TOKEN_MAX_AGE = None 

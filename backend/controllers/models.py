@@ -1,6 +1,5 @@
 from controllers.database import db 
 from controllers.database import func
-#NEW#
 from flask_security import UserMixin, RoleMixin 
 
 class User(db.Model, UserMixin):
@@ -13,6 +12,8 @@ class User(db.Model, UserMixin):
 
     fs_uniquifier = db.Column(db.String(255), unique = True, nullable = False)
     fs_token_uniquifier = db.Column(db.String(255), unique = True, nullable = True)
+
+    last_visited = db.Column(db.DateTime, nullable=True)
 
     roles=db.relationship('Role', secondary='user_role')
 
@@ -32,7 +33,7 @@ class ParkingLot(db.Model):
     address = db.Column(db.String(500), nullable = False)
     pincode = db.Column(db.String(6), unique = True, nullable = False)
     max_spots = db.Column(db.Integer, nullable = False)
-    price = db.Column(db.String(50), nullable = False)
+    price = db.Column(db.Float(50), nullable = False)
 
 class ParkingSpot(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -50,6 +51,6 @@ class Reservation(db.Model):
     leaving_timestamp = db.Column(db.DateTime, nullable = True)
     cost_per_unit_time = db.Column(db.Integer, nullable = False)
     total_cost = db.Column(db.Integer,nullable = True)
-    status = db.Column(db.String(20), nullable =False, default = 'active')
+    status = db.Column(db.String(20), nullable =False, default = 'parked')
     user = db.relationship('User', backref='reservations')
     spot = db.relationship('ParkingSpot', backref='reservations')
