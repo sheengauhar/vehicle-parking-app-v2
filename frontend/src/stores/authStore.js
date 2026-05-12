@@ -13,6 +13,12 @@ export const useAuthStore = defineStore('authStore', () => {
         user.value = {...userData}
     }
 
+    function setUserName(name){
+        if (user.value){
+            user.value.full_name=name;
+        }
+    }
+
     function clearAuthToken(){
         localStorage.removeItem('token')
         localStorage.removeItem('user')
@@ -40,5 +46,5 @@ export const useAuthStore = defineStore('authStore', () => {
         return user.value? user.value.roles: []
     }
 
-    return {isAuthenticated, setUserCred, clearAuthToken ,getAuthToken, getUserEmail, getUserPhone, getUserName, getUserRoles}
+    return {isAuthenticated, setUserCred, setUserName, clearAuthToken ,getAuthToken, getUserEmail, getUserPhone, getUserName, getUserRoles}
 })

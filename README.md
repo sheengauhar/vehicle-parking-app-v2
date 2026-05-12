@@ -151,6 +151,106 @@ Relationships:
 - Integrated Matplotlib for generating server-side graphs.
 - Visualizations include total revenue, parking activity and lot utilization stats.
 
+## Installation & Setup
+
+### Backend Setup (Flask)
+
+- Clone the repository
+
+```bash
+git clone https://github.com/sheengauhar/vehicle-parking-app-v2
+```
+
+- Navigate to backend folder
+
+```bash
+cd backend
+```
+
+- Install backend dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+- Run Flask server
+
+```bash
+py-3.13 app.py
+```
+
+Backend runs on:
+`http://localhost:5000`
+
+---
+
+### Frontend Setup (Vue)
+
+- Navigate to frontend folder
+
+```bash
+cd frontend
+```
+
+- Install frontend dependencies
+
+```bash
+npm install
+```
+
+- Start Vue development server
+
+```bash
+npm run dev
+```
+
+Frontend runs on:
+`http://localhost:5173`
+
+---
+
+### Redis Setup
+
+Start Redis server:
+
+```bash
+redis-server
+```
+
+---
+
+### Celery Worker
+
+Navigate to backend folder:
+
+```bash
+cd backend
+```
+
+Run Celery worker:
+
+```bash
+celery -A celery_app.celery worker --loglevel=info --pool=solo
+```
+
+It handles background tasks such as:
+- generating user's parking history CSV
+- sending daily reminders
+- sending monthly reports
+
+---
+
+### Celery Beat Scheduler
+
+Run scheduled reminder tasks:
+
+```bash
+celery -A celery_app.celery beat --loglevel=info
+```
+
+
+
+
 
 ## Folder Structure
 VEHICLE-PARKING-APP-V2/

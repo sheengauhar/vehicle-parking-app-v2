@@ -385,6 +385,10 @@ class CreateReservation(Resource):
 
         if not lot_id or not vehicle_number:
             return {"message": "lot_id and vehicle_number required"}, 400
+        
+        existing_reservation = Reservation.query.filter(Reservation.vehicle_number==vehicle_number, Reservation.leaving_timestamp==None).first()
+        if existing_reservation:
+            return{"message": "This Vehicle is already parked."},400
 
         lot = ParkingLot.query.get(lot_id)
         if not lot:
@@ -393,7 +397,7 @@ class CreateReservation(Resource):
         spot = ParkingSpot.query.filter_by(lot_id=lot_id, status='available').first()
         if not spot:
             return {"message": "No available spots"}, 400
-
+        
         spot.status = 'occupied'
         db.session.commit()
 

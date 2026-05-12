@@ -57,6 +57,8 @@ async function saveChanges() {
 
     if (!res.ok) throw new Error(data.message);
 
+    authStore.setUserName(full_name.value);
+
     success.value = "Profile Updated Successfully!";
   } catch (err) {
     error.value = err.message;
