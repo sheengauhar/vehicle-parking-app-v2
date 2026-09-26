@@ -37,7 +37,7 @@ The **Vehicle Parking App** is a web-based solution that enables:
 
 ---
 
-## 🗃️ Database Models & Relationships
+## Database Models & Relationships
 
 - **User**: Stores registration details (name, email, phone number, password).
 - **Role**: Defines roles like `User`, `Admin`.
